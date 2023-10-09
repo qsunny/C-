@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace showcase2
 {
@@ -49,6 +50,17 @@ namespace showcase2
             {
                 Console.WriteLine(p);
             }
+
+            string jsonPerson = JsonConvert.SerializeObject(personList, Formatting.Indented);
+            Console.WriteLine(jsonPerson);
+
+            //测试我当前版本.net 4.6  Newtonsoft.Json 12.0.0.0   
+            //可以把小写字段名称或者同名但是大小写不一样  自动识别转换
+            string strJson = "{\"name\":\"小明\",\"age\":18,\"password\":\"45465122\"}";
+            Person s1 = JsonConvert.DeserializeObject<Person>(strJson);
+            Console.WriteLine(s1);
+
+
             Console.ReadKey();
         }
     }
